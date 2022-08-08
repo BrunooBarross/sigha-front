@@ -8,12 +8,16 @@ import UserContext from "../../Contexts/UserContext"
 import { useContext } from 'react';
 
 import Banner from '../Banner'
+import ModalAlert from '../Modal-Alert/ModalAlert';
 
 const SignIn = () => {
     const navigate = useNavigate();
     const [loginData, setloginData] = useState({ email: "", password: "" });
     const [load, setLoad] = useState(false);
     const [alert, setAlert] = useState(null);
+    const [modalIsOpen, setIsOpen] = useState(false);
+    const [imageSrc, setImageSrc] = useState("../assets/images/error.png");
+    const [alertColor, setAlertColor] = useState(false);
 
     const { setUserData } = useContext(UserContext);
 
@@ -21,23 +25,35 @@ const SignIn = () => {
         setAlert(null);
         event.preventDefault();
         setLoad(true);
-        const requisicaoPost = axios.post("https://abef-linkr-api.herokuapp.com/signin", loginData);
+        const requisicaoPost = axios.post("http://127.0.0.1:5000/signin", loginData);
         requisicaoPost.then(response => {
             const { data } = response;
-            localStorage.setItem("userData", JSON.stringify({ userId: data.id, token: data.token, userName: data.userName, picture: data.picture }))
-            setUserData({ token: data.token, userId: data.id, userName: data.userName, picture: data.picture });
+            console.log(data)
+            localStorage.setItem("userData", JSON.stringify({ token: data.token, userName: data.userName, picture: data.picture }))
+            setUserData({ token: data.token, userName: data.userName, picture: data.picture });
             setLoad(false);
             navigate('/timeline')
         }); requisicaoPost.catch(error => {
-            if (error.response.status === 401) {
-                setAlert('Email ou senha incorreto(s)');
+            setAlertColor(false);
+            setImageSrc("../assets/images/error.png")
+            if (error.response.status === 404) {
+                setAlert('Email não cadastrado');
+                setIsOpen(true);
             }
+            if (error.response.status === 401) {
+                setAlert('Senha incorreta');
+                setIsOpen(true);
+            }
+            setTimeout(() => {
+                setIsOpen(false);
+            }, 2400);
             setLoad(false);
         });
     }
 
     return (
         <Container>
+            <ModalAlert alert={alert} modalIsOpen={modalIsOpen} imageSrc={imageSrc} alertColor={alertColor}></ModalAlert>
             <Banner></Banner>
             <RegisterContainer load={load} onSubmit={userLogin}>
                 <input type="email" name="email" placeholder='email'
@@ -46,7 +62,6 @@ const SignIn = () => {
                 <input type="password" minLength="4" name="password" placeholder='password'
                     onChange={e => setloginData({ ...loginData, password: e.target.value })}
                     disabled={load ? true : false} required />
-                <Label>{alert}</Label>
                 <Button load={load} disabled={load ? true : false} type="submit">{load ? <ThreeDots color="#fff" height={13} /> : "Log In"}</Button>
                 <Div>
                     <Link to={`/signup`}>
@@ -115,7 +130,7 @@ const Button = styled.button`
         height: 65px;
         align-items: center;
         justify-content: center;
-        background: #1877F2;
+        background: #a20e5a;
         border-radius: 6px;
         border: none;
         font-family: 'Oswald';
@@ -154,10 +169,5 @@ const Div = styled.div`
             line-height: 20px;
         }
     }
-`
-const Label = styled.label`
-    font-size: 12px;
-    color: red;  
-    padding-top: 5px;
 `
 export default SignIn;

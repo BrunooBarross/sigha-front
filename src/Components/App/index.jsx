@@ -4,17 +4,19 @@ import { useState } from "react";
 
 import SignUp from "../SignUp";
 import SignIn from "../SignIn";
+import Home from "../Home";
 
 export default function App() {
     const [userData, setUserData] = useState(JSON.parse(localStorage.getItem("userData")));
     return (
         <UserContext.Provider value={{ userData, setUserData }}>
-                <BrowserRouter>
-                    <Routes>
-                        <Route path="/" element={<SignIn />} />
-                        <Route path="/signup" element={<SignUp />} />   
-                    </Routes>
-                </BrowserRouter>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<SignIn />} />
+                    <Route path="/signup" element={<SignUp />} />
+                    <Route path="/home" element={<Home />} />
+                </Routes>
+            </BrowserRouter>
         </UserContext.Provider>
     );
 };

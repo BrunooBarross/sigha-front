@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from "react";
-import { Link } from 'react-router-dom';
 import { ThreeDots } from 'react-loader-spinner';
 import UserContext from "../../Contexts/UserContext"
 import { useContext } from 'react';
@@ -29,10 +28,10 @@ const SignIn = () => {
         requisicaoPost.then(response => {
             const { data } = response;
             console.log(data)
-            localStorage.setItem("userData", JSON.stringify({ token: data.token, userName: data.userName, picture: data.picture }))
-            setUserData({ token: data.token, userName: data.userName, picture: data.picture });
+            localStorage.setItem("userData", JSON.stringify({ token: data.token, userName: data.userName, picture: data.imageUrl }))
+            setUserData({ token: data.token, userName: data.userName, picture: data.imageUrl });
             setLoad(false);
-            navigate('/timeline')
+            navigate('/home')
         }); requisicaoPost.catch(error => {
             setAlertColor(false);
             setImageSrc("../assets/images/error.png")
@@ -134,8 +133,6 @@ const Button = styled.button`
         align-items: center;
         width: 100%;
         height: 65px;
-        align-items: center;
-        justify-content: center;
         background: #a20e5a;
         border-radius: 6px;
         border: none;

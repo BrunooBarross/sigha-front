@@ -26,7 +26,6 @@ const ModalAlert = ({alert, modalIsOpen, imageSrc, alertColor}) => {
                 <img src={imageSrc} alt="alert" />
                 <Label alertColor={alertColor}>{alert}</Label>
             </DivModal>
-
         </Modal>
     );
 }

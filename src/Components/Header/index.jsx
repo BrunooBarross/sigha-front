@@ -3,21 +3,27 @@ import { useState } from "react";
 import { IoChevronDownSharp } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 
+import SearchModal from '../Search-Modal/SearchModal';
+
 const Header = () => {
     const { token, picture } = JSON.parse(localStorage.getItem('userData'))
     const [quickAccess, setQuickAccess] = useState(false);
-    
+    const [modalIsOpen, setModalIsOpen] = useState(false);
     return(
         <Container>
+            <SearchModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen}></SearchModal>
             <div>
-            <Link to="/home">
-                <img src="../assets/images/logo.png" alt="logo" />
-            </Link>
+                <Link to="/home">
+                    <img src="../assets/images/logo.png" alt="logo" />
+                </Link>
                 <span className='logo'>SIGHA</span>
             </div>
             <Ul>
                 <li><ion-icon name="document-outline"></ion-icon>LISTAR DOCUMENTOS</li>
-                <li><ion-icon name="search-outline"></ion-icon>BUSCAR DOCUMENTOS</li> 
+                <li  onClick={() => setModalIsOpen(true)}>
+                    <ion-icon name="search-outline"></ion-icon>
+                    BUSCAR DOCUMENTOS
+                </li> 
             </Ul>
             <ImageUser 
                 src={picture}

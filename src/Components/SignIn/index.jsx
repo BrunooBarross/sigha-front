@@ -56,6 +56,7 @@ const SignIn = () => {
             <ModalAlert alert={alert} modalIsOpen={modalIsOpen} imageSrc={imageSrc} alertColor={alertColor}></ModalAlert>
             <Banner></Banner>
             <RegisterContainer load={load} onSubmit={userLogin}>
+                <img src="../assets/images/logo.png" alt="logo" />
                 <input type="email" name="email" placeholder='email'
                     onChange={e => setloginData({ ...loginData, email: e.target.value })}
                     disabled={load ? true : false} required />
@@ -92,6 +93,11 @@ const RegisterContainer = styled.form`
     width: 429px;
     margin-left: 51px;
     margin-right: 51px;
+
+    img{
+        margin-bottom: 10px;
+        width: 120px;
+    }    
 
     input{
         padding-left: 17px;
@@ -153,7 +159,7 @@ const Div = styled.div`
         justify-content: center;
     
     span{
-        color: #FFFFFF;
+        color: #184aca;
         font-family: 'Lato';
         font-style: normal;
         font-weight: 400;

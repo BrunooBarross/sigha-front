@@ -66,6 +66,7 @@ const SignUp = () => {
             <ModalAlert alert={alert} modalIsOpen={modalIsOpen} imageSrc={imageSrc} alertColor={alertColor}></ModalAlert>
             <Banner></Banner>
             <RegisterContainer encType='multipart/form-data' load={load} onSubmit={registerUser}>
+                <span>Cadastro de Usuário</span>
                 <input type="name" name="name" minLength="4" placeholder='username'
                     onChange={e => setRegister({ ...register, userName: e.target.value })}
                     disabled={load ? true : false} required />
@@ -110,6 +111,10 @@ const RegisterContainer = styled.form`
     width: 429px;
     margin-left: 51px;
     margin-right: 51px;
+
+    span{
+        color: #fff;
+    }
 
     input{
         padding-left: 17px;

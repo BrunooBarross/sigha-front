@@ -1,21 +1,20 @@
 import styled from 'styled-components';
 import { useState } from "react";
 import { IoChevronDownSharp } from "react-icons/io5";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 
 import SearchModal from '../Search-Modal/SearchModal';
 
 const Header = () => {
+    const navigate = useNavigate();
     const { token, picture } = JSON.parse(localStorage.getItem('userData'))
     const [quickAccess, setQuickAccess] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     return(
         <Container>
             <SearchModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen}></SearchModal>
-            <div>
-                <Link to="/home">
-                    <img src="../assets/images/logo.png" alt="logo" />
-                </Link>
+            <div className='div-logo' onClick={() => {navigate('/home')}}>
+                <img src="../assets/images/logo.png" alt="logo" />
                 <span className='logo'>SIGHA</span>
             </div>
             <Ul>
@@ -52,9 +51,10 @@ const Container = styled.div`
     height: 80px;
     background-color: #1a1919;
     
-    div{
+    .div-logo{
         display: flex;
         align-items: center;
+        cursor: pointer;
     }
 
     span{

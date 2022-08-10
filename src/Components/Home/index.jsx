@@ -1,7 +1,10 @@
 import Header from "../Header";
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+    const navigate = useNavigate();
+
     return (
         <Container>
             <Header></Header>
@@ -10,10 +13,9 @@ const Home = () => {
                     <h1>Sistema gerenciador de horas acadêmicas</h1>
                 </div>
                 <DivButton>
-                    <Bnt>CADASTRAR DOCUMENTO</Bnt>
+                    <Bnt onClick={() => {navigate('/insert')}}>CADASTRAR DOCUMENTO</Bnt>
                     <Bnt>FILTRAR EDITAR EXCLUIR</Bnt>
                 </DivButton>
-                
             </Section>
         </Container>
     );

@@ -28,14 +28,16 @@ const SearchModal = ({ modalIsOpen, setModalIsOpen }) => {
 					<ion-icon name="close" onClick={() => setModalIsOpen(false)}></ion-icon>
 				</div>
                 <hr />
-                <input type="text" placeholder="Digite o nome do doc" />
-                <hr />
-                <BntDiv>
-                    <button type="submit" className="btn-submit">Pesquisar</button>
-                    <button type="button" className="btn-close" onClick={() => setModalIsOpen(false)}>
-                        Fechar
-                    </button>
-                </BntDiv>
+                <form>
+                    <input type="text" placeholder="Digite o nome do doc" minlength={3} maxLength={20} required/>
+                    <hr />
+                    <BntDiv>
+                        <button type="submit" className="btn-submit">Pesquisar</button>
+                        <button type="button" className="btn-close" onClick={() => setModalIsOpen(false)}>
+                            Fechar
+                        </button>
+                    </BntDiv>
+                </form>
             </DivModal>
         </Modal>
     );
@@ -70,13 +72,13 @@ const DivModal = styled.div`
         padding-left: 5px;
         margin-top: 5px;
         margin-bottom: 5px;
-        border-color: #d0d0d0 2px;
+        border: solid #d0d0d0 1px;
         font-size: 16px;
         color: #868585;
         outline: none;
     }
 `
-const BntDiv = styled.form`
+const BntDiv = styled.div`
     display: flex;
     justify-content: flex-end;
 
@@ -88,7 +90,7 @@ const BntDiv = styled.form`
         cursor: pointer;
         color: #fff;
         font-size: 18px;
-        border-color: #CE93D8 2px;
+        border: solid #a55eea 2px;
     }
 
     .btn-submit{

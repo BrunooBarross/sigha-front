@@ -27,7 +27,7 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background-image: url("../assets/images/bg-main.jpg");
     filter: brightness(95%);
 `

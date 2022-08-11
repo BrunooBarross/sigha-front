@@ -11,7 +11,7 @@ const Insert = () => {
     const datePicker = new Date().toISOString().split("T")[0];
 
     const [load, setLoad] = useState(false);
-    const [documentData, setDocumentData] = useState({ name: "", type: "", issueDate: "", hours: 0});
+    const [documentData, setDocumentData] = useState({ title: "", type: "", issueDate: "", hours: 0});
     const [certificate, setCertificate] = useState("");
     
     function registerUser(event) {
@@ -20,7 +20,7 @@ const Insert = () => {
 
         const formData = new FormData();
         formData.append('file', certificate);
-        formData.append('name', documentData.name);
+        formData.append('title', documentData.title);
         formData.append('type', documentData.type);
         formData.append('issueDate', dayjs(documentData.issueDate).locale('pt-BR').format('YYYY-MM-DD'));
         formData.append('hours', documentData.hours);
@@ -50,7 +50,7 @@ const Insert = () => {
                 <Form encType='multipart/form-data' load={load} onSubmit={registerUser}>
                     <Label>Nome do Certificado:</Label>
                     <input type="text" placeholder="Ex: Palestra jogos digitais" minLength={5} maxLength={40} 
-                        onChange={e => setDocumentData({ ...documentData, name: e.target.value })} 
+                        onChange={e => setDocumentData({ ...documentData, title: e.target.value })} 
                         disabled={load ? true : false} required />
                     <Label>Selecione o tipo:</Label>
                     <RadioDiv>
@@ -89,7 +89,7 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #fff;
 `
 const Title = styled.div`

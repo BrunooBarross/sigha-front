@@ -95,7 +95,7 @@ const SignUp = () => {
 const Container = styled.div`
     display: flex;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     background: #1d1c26;
 
     @media (max-width: 900px) {	  

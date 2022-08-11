@@ -18,7 +18,9 @@ const Header = () => {
                 <span className='logo'>SIGHA</span>
             </div>
             <Ul>
-                <li><ion-icon name="document-outline"></ion-icon>LISTAR DOCUMENTOS</li>
+                <li onClick={() => {navigate('/documents')}}><ion-icon name="document-outline"></ion-icon>
+                    LISTAR DOCUMENTOS
+                </li>
                 <li  onClick={() => setModalIsOpen(true)}>
                     <ion-icon name="search-outline"></ion-icon>
                     BUSCAR DOCUMENTOS
@@ -50,6 +52,8 @@ const Container = styled.div`
     width: 100%;
     height: 80px;
     background-color: #1a1919;
+    position: sticky;
+    top: 0;
     
     .div-logo{
         display: flex;

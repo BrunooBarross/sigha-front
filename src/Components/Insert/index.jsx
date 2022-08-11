@@ -4,6 +4,7 @@ import Header from "../Header";
 import { useState } from "react";
 import axios from 'axios';
 import dayjs from 'dayjs';
+import ModalAlert from '../Modal-Alert/ModalAlert';
 
 const Insert = () => {
     const { token } = JSON.parse(localStorage.getItem('userData'));
@@ -13,6 +14,10 @@ const Insert = () => {
     const [load, setLoad] = useState(false);
     const [documentData, setDocumentData] = useState({ title: "", type: "", issueDate: "", hours: 0});
     const [certificate, setCertificate] = useState("");
+    const [alert, setAlert] = useState(null);
+    const [modalIsOpen, setIsOpen] = useState(false);
+    const [imageSrc, setImageSrc] = useState("../assets/images/error.png");
+    const [alertColor, setAlertColor] = useState(false);
     
     function registerUser(event) {
         event.preventDefault();
@@ -34,6 +39,14 @@ const Insert = () => {
                 },
             }); requisicaoPost.then(response => {
                 setLoad(false);
+                setAlertColor(true);
+                setImageSrc("../assets/images/accept.png");
+                setAlert('Cadastro Realizado!');
+                setIsOpen(true);
+                setTimeout(() =>{
+                    setIsOpen(false);
+                    navigate('/documents')
+                },2000); 
             }); requisicaoPost.catch(error => {
                 setLoad(false);
             });
@@ -42,6 +55,7 @@ const Insert = () => {
     return (
         <Container>
             <Header></Header>
+            <ModalAlert alert={alert} modalIsOpen={modalIsOpen} imageSrc={imageSrc} alertColor={alertColor}></ModalAlert>
             <Section>
                 <Title>
                     <h1>+ Inserir Documentos</h1>

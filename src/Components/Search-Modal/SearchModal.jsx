@@ -29,7 +29,7 @@ const SearchModal = ({ modalIsOpen, setModalIsOpen }) => {
 				</div>
                 <hr />
                 <form>
-                    <input type="text" placeholder="Digite o nome do doc" minlength={3} maxLength={20} required/>
+                    <input type="text" placeholder="Digite o nome do doc" minLength={3} maxLength={20} required/>
                     <hr />
                     <BntDiv>
                         <button type="submit" className="btn-submit">Pesquisar</button>
@@ -77,6 +77,12 @@ const DivModal = styled.div`
         color: #868585;
         outline: none;
     }
+
+    @media (max-width: 290px) {	
+        input{
+            font-size: 14px;
+        }
+    }
 `
 const BntDiv = styled.div`
     display: flex;
@@ -100,5 +106,16 @@ const BntDiv = styled.div`
 
     .btn-close{
         background-color: #DC3545;
+    }
+
+    @media (max-width: 529px) {	
+        justify-content: center;
+
+        button{
+            width: 60%;
+            height: 40px;
+            font-size: 14px;
+            text-align: center;
+        }  
     }
 `

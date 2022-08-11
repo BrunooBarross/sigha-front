@@ -1,10 +1,43 @@
 import styled from 'styled-components';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Header from "../Header";
+import { useState } from "react";
+import axios from 'axios';
+import dayjs from 'dayjs';
 
 const Insert = () => {
+    const { token } = JSON.parse(localStorage.getItem('userData'));
     const navigate = useNavigate();
-    const regex = new RegExp('dog','gi');
+    const datePicker = new Date().toISOString().split("T")[0];
+
+    const [load, setLoad] = useState(false);
+    const [documentData, setDocumentData] = useState({ name: "", type: "", issueDate: "", hours: 0});
+    const [certificate, setCertificate] = useState("");
+    
+    function registerUser(event) {
+        event.preventDefault();
+        setLoad(true);
+
+        const formData = new FormData();
+        formData.append('file', certificate);
+        formData.append('name', documentData.name);
+        formData.append('type', documentData.type);
+        formData.append('issueDate', dayjs(documentData.issueDate).locale('pt-BR').format('YYYY-MM-DD'));
+        formData.append('hours', documentData.hours);
+
+        const requisicaoPost = axios.post("http://127.0.0.1:5000/documents",
+            formData,
+            {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    Authorization: `Bearer ${token}`
+                },
+            }); requisicaoPost.then(response => {
+                setLoad(false);
+            }); requisicaoPost.catch(error => {
+                setLoad(false);
+            });
+    }
 
     return (
         <Container>
@@ -14,23 +47,34 @@ const Insert = () => {
                     <h1>+ Inserir Documentos</h1>
                     <span><hr /></span>
                 </Title>
-                <Form>
-                    <datalist id="list"> 
-                        <option>Presencial</option> 
-                        <option>Online</option> 
-                    </datalist>
+                <Form encType='multipart/form-data' load={load} onSubmit={registerUser}>
                     <Label>Nome do Certificado:</Label>
-                        <input type="text" placeholder="Ex: Palestra jogos digitais" minLength={5} maxLength={40} required/>
-                    <Label>Selecione o tipo do seu certificado</Label>
-                        <input name="type" list="list" pattern={regex} placeholder="Prencial ou Online" required/>
-                        
+                    <input type="text" placeholder="Ex: Palestra jogos digitais" minLength={5} maxLength={40} 
+                        onChange={e => setDocumentData({ ...documentData, name: e.target.value })} 
+                        disabled={load ? true : false} required />
+                    <Label>Selecione o tipo:</Label>
+                    <RadioDiv>
+                            <input type="radio" name="fav_language" value={"Online"} onChange={e => setDocumentData({ ...documentData, type: e.target.value })} 
+                                disabled={load ? true : false} required />
+                            <label>Online</label>
+                            <input type="radio" name="fav_language" value={"Presencial"} onChange={e => setDocumentData({ ...documentData, type: e.target.value })} 
+                                disabled={load ? true : false} required />
+                            <label>Presencial</label>
+                    </RadioDiv>
+                    <Label>Data de emissão</Label>
+                    <input type="date" max={datePicker} 
+                        onChange={e => setDocumentData({ ...documentData, issueDate: e.target.value })} 
+                        disabled={load ? true : false} required />
                     <Label>Carga horária</Label>
-                        <input type="number" min="0" step="1" required/>
+                    <input type="number" min="0" step="1"
+                        onChange={e => setDocumentData({ ...documentData, hours: e.target.value })} 
+                        disabled={load ? true : false} required />
                     <Label>Anexar certificado</Label>
-                        <input className='file' name="file" type="file" accept="image/jpeg,image/gif,image/png" required/>
+                    <input className='file' name="file" type="file" accept="image/jpeg,image/gif,image/png,application/pdf" 
+                        onChange={e => setCertificate(e.target.files[0])} disabled={load ? true : false} required />
                     <BntDiv>
                         <button type="submit" className="btn-submit">Salvar</button>
-                        <button type="button" className="btn-close" onClick={()=>{navigate("/home")}}>Fechar</button>
+                        <button type="button" className="btn-close" onClick={() => { navigate("/home") }}>Fechar</button>
                     </BntDiv>
                 </Form>
             </Section>
@@ -69,22 +113,64 @@ const Section = styled.div`
         margin-top: 10px;
         font-size: 15px;
     }
+
+    @media (max-width: 800px) {	  
+        width: 100%;
+    }
+
+    @media (max-width: 529px) {	    
+        input{
+            width: 89%;
+        }
+    }
 `
 
 const Form = styled.form`
     display: flex;
     flex-direction: column;
     width: 500px;
+
+    @media (max-width: 529px) {	  
+        align-items: center;  
+        width: 100%; 
+    }
 `
 
 const Label = styled.label`
     margin-top: 20px;
     font-size: 15px;
+
+    @media (max-width: 529px) {	    
+        width: 89%;
+    }
+`
+
+const RadioDiv = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+
+    label{
+        margin-right: 10px;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    input{
+        margin-top: 0;
+        width: 15px;
+    }
+
+    @media (max-width: 529px) {	     
+        width: 89%;
+    }
 `
 
 const BntDiv = styled.div`
+    width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
 
     button{
         width: 250px;
@@ -104,5 +190,13 @@ const BntDiv = styled.div`
 
     .btn-close{
         background-color: #DC3545;
+    }
+
+    @media (max-width: 529px) {	  
+        button{
+            width: 40%;
+            height: 40px;
+            font-size: 14px;
+        }  
     }
 `

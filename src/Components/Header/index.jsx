@@ -7,7 +7,7 @@ import SearchModal from '../Search-Modal/SearchModal';
 
 const Header = () => {
     const navigate = useNavigate();
-    const { token, picture } = JSON.parse(localStorage.getItem('userData'))
+    const { token, picture } = JSON.parse(localStorage.getItem('userData'));
     const [quickAccess, setQuickAccess] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     return(

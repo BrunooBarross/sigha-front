@@ -1,8 +1,10 @@
 import Modal from 'react-modal';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { useState } from "react";
 
 const SearchModal = ({ modalIsOpen, setModalIsOpen }) => {
-
+    const [title, setTitle] = useState("");
     const customStyles = {
         content: {
             width: '60%',
@@ -24,15 +26,20 @@ const SearchModal = ({ modalIsOpen, setModalIsOpen }) => {
         >
             <DivModal>
                 <div className="modal-header">
-					<h5><ion-icon name="search"></ion-icon> Encontre um documento</h5>
-					<ion-icon name="close" onClick={() => setModalIsOpen(false)}></ion-icon>
-				</div>
+                    <h5><ion-icon name="search"></ion-icon> Encontre um documento</h5>
+                    <ion-icon name="close" onClick={() => setModalIsOpen(false)}></ion-icon>
+                </div>
                 <hr />
                 <form>
-                    <input type="text" placeholder="Digite o nome do doc" minLength={3} maxLength={20} required/>
+                    <input type="text" placeholder="Digite o nome do doc" minLength={3} maxLength={20}
+                        onChange={e => setTitle(e.target.value)} required />
                     <hr />
                     <BntDiv>
-                        <button type="submit" className="btn-submit">Pesquisar</button>
+                        <Link to={`/documents/${title}`}>
+                            <button type="submit" className="btn-submit" onClick={() => setModalIsOpen(false)}>
+                                Pesquisar
+                            </button>
+                        </Link>
                         <button type="button" className="btn-close" onClick={() => setModalIsOpen(false)}>
                             Fechar
                         </button>

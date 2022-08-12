@@ -58,6 +58,7 @@ const Documents = () => {
                             <td className='bold'>Tipo</td>
                             <td className='bold'>CH</td>
                             <td className='bold'>Arquivo</td>
+                            <td className='bold'>Ações</td>
                         </tr>                  
                         {
                             currentItens.map((item, key) =>
@@ -153,19 +154,19 @@ const Section = styled.div`
     }
 
     @media (max-width: 800px) {	  
-        width: 100%;
+        width: 90%;
     }
 
     @media (max-width: 529px) {	    
         input{
-            width: 89%;
+            width: 85%;
         }
         table {
             width: 89%;
         }
     }
 
-    @media (max-width: 342px) {	    
+    @media (max-width: 408px) {	    
         .bold{
             font-size: 11px;
         }
@@ -173,6 +174,17 @@ const Section = styled.div`
         td, th {
             font-size: 10px;
             padding: 5px;
+        }
+    }
+
+    @media (max-width: 320px) {	    
+        .bold{
+            font-size: 10px;
+        }
+
+        td, th {
+            font-size: 9px;
+            padding: 4px;
         }
     }
 `

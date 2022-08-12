@@ -5,8 +5,8 @@ const ModalAlert = ({alert, modalIsOpen, imageSrc, alertColor}) => {
 
     const customStyles = {
         content: {
-            width: '50%',
-            height: '40%',
+            width: '45%',
+            height: '33%',
             top: '50%',
             left: '50%',
             right: 'auto',

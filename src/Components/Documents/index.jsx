@@ -13,6 +13,7 @@ const Documents = () => {
     const { token } = JSON.parse(localStorage.getItem('userData'));
     const [documents, setDocuments] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
+    const [render, setRender] = useState(false);
 
     const itensPerPage = 10;
     const pages = Math.ceil(documents.length / itensPerPage);
@@ -30,7 +31,8 @@ const Documents = () => {
         requisicaoGet.catch(error => { 
             console.log(error);
         });
-    }, [token]);
+    }, [token, render]);
+
     return(
         <Container>
             <Header></Header>
@@ -64,7 +66,9 @@ const Documents = () => {
                                     issueDate={item.issueDate}
                                     hours={item.hours}
                                     documentUrl={item.documentUrl}
-                                    awsFileKey={item.awsFileKey}
+                                    token={token}
+                                    render={render}
+                                    setRender={setRender}
                                 />
                             )
                         }

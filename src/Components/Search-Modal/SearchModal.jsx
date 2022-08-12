@@ -24,7 +24,7 @@ const SearchModal = ({ modalIsOpen, setModalIsOpen }) => {
         >
             <DivModal>
                 <div className="modal-header">
-					<h5>Encontre um documento</h5>
+					<h5><ion-icon name="search"></ion-icon> Encontre um documento</h5>
 					<ion-icon name="close" onClick={() => setModalIsOpen(false)}></ion-icon>
 				</div>
                 <hr />
@@ -57,7 +57,6 @@ const DivModal = styled.div`
     }
 
     h5{
-        margin-top: 5px;
         font-size: 20px;
     }
 

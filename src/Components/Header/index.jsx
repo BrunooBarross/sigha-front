@@ -19,11 +19,11 @@ const Header = () => {
             </div>
             <Ul>
                 <li onClick={() => {navigate('/documents')}}><ion-icon name="document-outline"></ion-icon>
-                    LISTAR DOCUMENTOS
+                    LISTAR CERTIFICADOS
                 </li>
                 <li  onClick={() => setModalIsOpen(true)}>
                     <ion-icon name="search-outline"></ion-icon>
-                    BUSCAR DOCUMENTOS
+                    BUSCAR CERTIFICADOS
                 </li> 
             </Ul>
             <ImageUser 

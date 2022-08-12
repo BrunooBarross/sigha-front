@@ -58,12 +58,12 @@ const Insert = () => {
             <ModalAlert alert={alert} modalIsOpen={modalIsOpen} imageSrc={imageSrc} alertColor={alertColor}></ModalAlert>
             <Section>
                 <Title>
-                    <h1>+ Inserir Documentos</h1>
+                    <h1>+ Inserir Certificado</h1>
                     <span><hr /></span>
                 </Title>
                 <Form encType='multipart/form-data' load={load} onSubmit={registerUser}>
                     <Label>Nome do Certificado:</Label>
-                    <input type="text" placeholder="Ex: Palestra jogos digitais" minLength={5} maxLength={40} 
+                    <input type="text" placeholder="Ex: Palestra jogos digitais" minLength={5} maxLength={55} 
                         onChange={e => setDocumentData({ ...documentData, title: e.target.value })} 
                         disabled={load ? true : false} required />
                     <Label>Selecione o tipo:</Label>
@@ -88,7 +88,7 @@ const Insert = () => {
                         onChange={e => setCertificate(e.target.files[0])} disabled={load ? true : false} required />
                     <BntDiv>
                         <button type="submit" className="btn-submit">Salvar</button>
-                        <button type="button" className="btn-close" onClick={() => { navigate("/home") }}>Fechar</button>
+                        <button type="button" className="btn-close" onClick={() => { navigate(-1) }}>Fechar</button>
                     </BntDiv>
                 </Form>
             </Section>

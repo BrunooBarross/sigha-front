@@ -13,7 +13,7 @@ const Home = () => {
                     <h1>Sistema gerenciador de horas acadêmicas</h1>
                 </div>
                 <DivButton>
-                    <Bnt onClick={() => {navigate('/insert')}}>CADASTRAR DOCUMENTO</Bnt>
+                    <Bnt onClick={() => {navigate('/insert')}}>CADASTRAR CERTIFICADO</Bnt>
                     <Bnt>FILTRAR EDITAR EXCLUIR</Bnt>
                 </DivButton>
             </Section>

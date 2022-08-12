@@ -4,6 +4,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 import Header from "../Header";
+import Columns from "./Columns";
 import Document from "./Document";
 import Pagination from "./Pagination";
 
@@ -52,14 +53,7 @@ const Documents = () => {
                     :
                     <table>
                     <tbody>
-                        <tr>
-                            <td className='bold'>Emissão</td>
-                            <td className='bold'>Nome Certificado</td>
-                            <td className='bold'>Tipo</td>
-                            <td className='bold'>CH</td>
-                            <td className='bold'>Arquivo</td>
-                            <td className='bold'>Ações</td>
-                        </tr>                  
+                        <Columns></Columns>               
                         {
                             currentItens.map((item, key) =>
                                 <Document

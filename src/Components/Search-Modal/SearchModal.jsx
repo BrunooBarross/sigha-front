@@ -8,7 +8,7 @@ const SearchModal = ({ modalIsOpen, setModalIsOpen }) => {
     const customStyles = {
         content: {
             width: '60%',
-            height: '35%',
+            height: '250px',
             top: '23%',
             left: '50%',
             right: 'auto',

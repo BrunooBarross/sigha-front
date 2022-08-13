@@ -1,12 +1,12 @@
 import Modal from 'react-modal';
 import styled from 'styled-components';
 
-const ModalAlert = ({alert, modalIsOpen, imageSrc, alertColor}) => {
+const ModalAlert = ({ alert, modalIsOpen, imageSrc, alertColor }) => {
 
     const customStyles = {
         content: {
             width: '45%',
-            height: '33%',
+            height: '35%',
             top: '50%',
             left: '50%',
             right: 'auto',

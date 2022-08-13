@@ -46,6 +46,8 @@ const Document = ({ id, title, type, issueDate, hours, documentUrl, token, rende
                 issueDate={issueDate}
                 hours={hours}
                 token={token}
+                render={render}
+                setRender={setRender}
             >
             </ModalEdit>
             <ModalAlert alert={alert} modalIsOpen={modalIsOpen} imageSrc={imageSrc} alertColor={alertColor}></ModalAlert>

@@ -2,16 +2,17 @@ import Modal from 'react-modal';
 import { useState } from "react";
 import styled from 'styled-components';
 import dayjs from 'dayjs';
+import axios from 'axios';
 
-const ModalEdit = ({ modalEditOpen, setModalEditOpen, id, title, type, issueDate, hours, token }) => {
+const ModalEdit = ({ modalEditOpen, setModalEditOpen, id, title, type, issueDate, hours, token, setRender, render }) => {
     const [load, setLoad] = useState(false);
     const [documentData, setDocumentData] = useState({ title: title, type: type, issueDate: issueDate, hours: hours});
-    const [certificate, setCertificate] = useState("");
+    const [certificate, setCertificate] = useState(undefined);
     const datePicker = new Date().toISOString().split("T")[0];
-    
+   
     const customStyles = {
         content: {
-            height: '80%',
+            height: '82%',
             top: '50%',
             left: '50%',
             right: 'auto',
@@ -20,6 +21,45 @@ const ModalEdit = ({ modalEditOpen, setModalEditOpen, id, title, type, issueDate
             transform: 'translate(-50%, -50%)',
         },
     };
+
+    function updateDocument(event) {
+        event.preventDefault();
+        setLoad(true);
+        const formData = new FormData();
+
+        if( certificate === undefined && 
+            documentData.title === title &&
+            documentData.type === type &&
+            documentData.issueDate === issueDate &&
+            documentData.hours === hours
+        ){
+            return setModalEditOpen(false);
+        }
+
+        if(certificate !== undefined){
+            formData.append('file', certificate);
+        }
+        formData.append('title', documentData.title);
+        formData.append('type', documentData.type);
+        formData.append('issueDate', dayjs(documentData.issueDate).locale('pt-BR').format('YYYY-MM-DD'));
+        formData.append('hours', documentData.hours);
+
+        const requisicaoPost = axios.put("http://127.0.0.1:5000/documents",
+            formData,
+            {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    Authorization: `Bearer ${token}`,
+                    id
+                },
+            }); requisicaoPost.then(response => {
+                setRender(!render);
+                setLoad(false);
+                setModalEditOpen(false);
+            }); requisicaoPost.catch(error => {
+                setLoad(false);
+            });
+    }
 
     return (
         <Modal
@@ -32,7 +72,7 @@ const ModalEdit = ({ modalEditOpen, setModalEditOpen, id, title, type, issueDate
                     <h1>+ Alterar Certificado</h1>
                     <span><hr /></span>
                 </Title>
-                <Form encType='multipart/form-data' load={load}>
+                <Form encType='multipart/form-data' load={load} onSubmit={updateDocument}>
                     <Label>Nome do Certificado:</Label>
                     <input type="text" value={documentData.title} placeholder="Ex: Palestra jogos digitais" minLength={5} maxLength={55} 
                         onChange={e => setDocumentData({ ...documentData, title: e.target.value })} 
@@ -54,8 +94,8 @@ const ModalEdit = ({ modalEditOpen, setModalEditOpen, id, title, type, issueDate
                     <input type="number" value={documentData.hours} min="0" step="1"
                         onChange={e => setDocumentData({ ...documentData, hours: e.target.value })} 
                         disabled={load ? true : false} required />
-                    <Label>Anexar certificado</Label>
-                    <input className='file' name="file" type="file" accept="image/jpeg,image/gif,image/png,application/pdf" 
+                    <Label title='Deixe vazio para permanecer o mesmo arquivo'>Anexar certificado</Label>
+                    <input title='Deixe vazio para permanecer o mesmo arquivo' className='file' name="file" type="file" accept="image/jpeg,image/gif,image/png,application/pdf" 
                         onChange={e => setCertificate(e.target.files[0])} disabled={load ? true : false} />
                     <BntDiv>
                         <button type="submit" className="btn-submit">Salvar</button>
@@ -85,7 +125,7 @@ const Section = styled.div`
     }
 
     input{
-        height: 40px;
+        height: 35px;
         margin-top: 10px;
         font-size: 15px;
     }
@@ -114,8 +154,9 @@ const Form = styled.form`
 `
 
 const Label = styled.label`
-    margin-top: 20px;
+    margin-top: 18px;
     font-size: 15px;
+    cursor: pointer;
 
     @media (max-width: 529px) {	    
         width: 89%;

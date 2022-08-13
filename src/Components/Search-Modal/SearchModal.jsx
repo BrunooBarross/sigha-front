@@ -8,7 +8,7 @@ const SearchModal = ({ modalIsOpen, setModalIsOpen }) => {
     const customStyles = {
         content: {
             width: '60%',
-            height: '34%',
+            height: '30%',
             top: '23%',
             left: '50%',
             right: 'auto',
@@ -96,7 +96,7 @@ const BntDiv = styled.div`
 
     button{
         width: 250px;
-        height: 70px;
+        height: 65px;
         margin-top: 10px;
         border-radius: 10px;
         cursor: pointer;

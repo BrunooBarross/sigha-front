@@ -4,12 +4,14 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 import ModalAlert from '../Modal-Alert/ModalAlert';
+import ModalEdit from "./Edit";
 
 const Document = ({ id, title, type, issueDate, hours, documentUrl, token, render, setRender }) =>{
     const [alert, setAlert] = useState(null);
     const [modalIsOpen, setIsOpen] = useState(false);
     const [imageSrc, setImageSrc] = useState("../assets/images/joinha.png");
     const [alertColor, setAlertColor] = useState(false);
+    const [modalEditOpen, setModalEditOpen] = useState(false);
 
     function deleteDocument(id, title){
         let dialog = window.confirm("Deletar o arquivo: " + title+ "?");
@@ -35,6 +37,17 @@ const Document = ({ id, title, type, issueDate, hours, documentUrl, token, rende
 
     return(
         <>
+            <ModalEdit 
+                modalEditOpen={modalEditOpen} 
+                setModalEditOpen={setModalEditOpen}
+                id={id}
+                title={title}
+                type={type}
+                issueDate={issueDate}
+                hours={hours}
+                token={token}
+            >
+            </ModalEdit>
             <ModalAlert alert={alert} modalIsOpen={modalIsOpen} imageSrc={imageSrc} alertColor={alertColor}></ModalAlert>
             <Tr>
                 <td>{dayjs(issueDate).locale('pt-BR').format('DD-MM-YY')}</td>
@@ -43,7 +56,10 @@ const Document = ({ id, title, type, issueDate, hours, documentUrl, token, rende
                 <td>{hours}h</td>
                 <td><a href={documentUrl} target="_blank" rel="noreferrer"><ion-icon name="download"></ion-icon></a></td>
                 <TdButton>
-                    <button className='edit'><ion-icon name="create-outline"></ion-icon><span>Edit</span></button>
+                    <button className='edit' onClick={() => {setModalEditOpen(!modalEditOpen)}}>
+                        <ion-icon name="create-outline"></ion-icon>
+                        <span>Edit</span>
+                    </button>
                     <button className='delete' onClick={()=> deleteDocument(id, title)}>
                         <ion-icon name="trash-outline"></ion-icon>
                         <span>Delete</span>

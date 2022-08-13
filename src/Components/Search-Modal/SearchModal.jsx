@@ -8,7 +8,7 @@ const SearchModal = ({ modalIsOpen, setModalIsOpen }) => {
     const customStyles = {
         content: {
             width: '60%',
-            height: '30%',
+            height: '35%',
             top: '23%',
             left: '50%',
             right: 'auto',
@@ -93,10 +93,11 @@ const DivModal = styled.div`
 const BntDiv = styled.div`
     display: flex;
     justify-content: flex-end;
+    width: 100%; 
 
     button{
         width: 250px;
-        height: 65px;
+        height: 62px;
         margin-top: 10px;
         border-radius: 10px;
         cursor: pointer;
@@ -114,11 +115,19 @@ const BntDiv = styled.div`
         background-color: #DC3545;
     }
 
-    @media (max-width: 529px) {	
-        justify-content: center;
-
+    @media (max-width: 920px) {	
         button{
-            width: 60%;
+            width: 90px;
+            justify-content: center;
+            height: 40px;
+            font-size: 14px;
+            text-align: center;
+        }  
+    }
+
+    @media (max-width: 529px) {	
+        button{
+            width: 75px;
             height: 40px;
             font-size: 14px;
             text-align: center;

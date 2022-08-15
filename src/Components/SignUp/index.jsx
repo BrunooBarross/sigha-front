@@ -23,6 +23,11 @@ const SignUp = () => {
         setAlert(null);
         setLoad(true);
 
+        if(image.size > 2097152){
+            window.alert("Olha o tamanho dessse arquivo ai fera! quer me falir? Mais de 2mb... Dá não");
+            return "";
+        }; 
+
         const formData = new FormData();
         formData.append('file', image);
         formData.append('userName', register.userName);

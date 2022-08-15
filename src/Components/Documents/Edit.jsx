@@ -25,6 +25,13 @@ const ModalEdit = ({ modalEditOpen, setModalEditOpen, id, title, type, issueDate
     function updateDocument(event) {
         event.preventDefault();
         setLoad(true);
+        
+        if(certificate.size > 2097152){
+            setLoad(false);
+            window.alert("Olha o tamanho dessse arquivo ai fera! quer me falir? Mais de 2mb... Dá não");
+            return "";
+        }; 
+
         const formData = new FormData();
 
         if( certificate === undefined && 

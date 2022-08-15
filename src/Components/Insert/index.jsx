@@ -18,11 +18,14 @@ const Insert = () => {
     const [modalIsOpen, setIsOpen] = useState(false);
     const [imageSrc, setImageSrc] = useState("../assets/images/error.png");
     const [alertColor, setAlertColor] = useState(false);
-    
     function registerUser(event) {
         event.preventDefault();
         setLoad(true);
-
+        if(certificate.size > 2097152){
+            setLoad(false);
+            window.alert("Olha o tamanho dessse arquivo ai fera! quer me falir? Mais de 2mb... Dá não");
+            return "";
+        };   
         const formData = new FormData();
         formData.append('file', certificate);
         formData.append('title', documentData.title);

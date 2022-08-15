@@ -145,7 +145,6 @@ const DivChart = styled.form`
         color: #fff;
     }
 `
-
 export {
     Container,
     Section,

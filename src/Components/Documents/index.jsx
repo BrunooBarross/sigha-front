@@ -6,6 +6,7 @@ import Header from "../Header";
 import Columns from "./Columns";
 import Document from "./Document";
 import Pagination from "./Pagination";
+import Loading from "../Loading-page/Loading";
 
 import {
     Container,
@@ -20,6 +21,7 @@ const Documents = () => {
     const [documents, setDocuments] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [render, setRender] = useState(false);
+    const[loadingPages, setLoadingPages] = useState(true);
 
     const itensPerPage = 10;
     const pages = Math.ceil(documents.length / itensPerPage);
@@ -33,6 +35,7 @@ const Documents = () => {
         requisicaoGet.then(response => {
            const {data} = response;
            setDocuments(data);
+           setLoadingPages(false);
         });
         requisicaoGet.catch(error => { 
             console.log(error);
@@ -42,47 +45,49 @@ const Documents = () => {
     return(
         <Container>
             <Header></Header>
-            <Section>
-                <Title>
-                    <div>
-                        <h1><ion-icon name="documents-outline"></ion-icon> Seus Documentos</h1>
-                        <div className="add-circle" onClick={() => {navigate('/insert')}}>
-                            <ion-icon className= "add-circle" name="add-circle"></ion-icon>
+            {loadingPages ? <Loading></Loading> :
+                <Section>
+                    <Title>
+                        <div>
+                            <h1><ion-icon name="documents-outline"></ion-icon> Seus Documentos</h1>
+                            <div className="add-circle" onClick={() => {navigate('/insert')}}>
+                                <ion-icon className= "add-circle" name="add-circle"></ion-icon>
+                            </div>
                         </div>
-                    </div>
-                    <span><hr /></span>
-                </Title>
-                {
-                    documents.length === 0 ? 
-                    <Aviso>
-                        <h2>Você não possui nenhum documento</h2>
-                        <h3>Clique <a href="/insert">aqui</a> e realize um cadastro</h3>
-                    </Aviso>
-                    :
-                    <table>
-                        <tbody>
-                            <Columns></Columns>               
-                            {
-                                currentItens.map((item, key) =>
-                                    <Document
-                                        key={key}
-                                        id={item.id}
-                                        title={item.title}
-                                        type={item.type}
-                                        issueDate={item.issueDate}
-                                        hours={item.hours}
-                                        documentUrl={item.documentUrl}
-                                        token={token}
-                                        render={render}
-                                        setRender={setRender}
-                                    />
-                                )
-                            }
-                        </tbody>
-                    </table>
-                }
-                <Pagination pages={pages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
-            </Section>
+                        <span><hr /></span>
+                    </Title>
+                    {
+                        documents.length === 0 ? 
+                        <Aviso>
+                            <h2>Você não possui nenhum documento</h2>
+                            <h3>Clique <a href="/insert">aqui</a> e realize um cadastro</h3>
+                        </Aviso>
+                        :
+                        <table>
+                            <tbody>
+                                <Columns></Columns>               
+                                {
+                                    currentItens.map((item, key) =>
+                                        <Document
+                                            key={key}
+                                            id={item.id}
+                                            title={item.title}
+                                            type={item.type}
+                                            issueDate={item.issueDate}
+                                            hours={item.hours}
+                                            documentUrl={item.documentUrl}
+                                            token={token}
+                                            render={render}
+                                            setRender={setRender}
+                                        />
+                                    )
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    <Pagination pages={pages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+                </Section>
+            }
         </Container>
     );
 };

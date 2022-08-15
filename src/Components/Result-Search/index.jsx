@@ -6,6 +6,7 @@ import Header from "../Header";
 import Columns from "../Documents/Columns"
 import Document from '../Documents/Document';
 import Pagination from "../Documents/Pagination";
+import Loading from "../Loading-page/Loading";
 
 import {
     Container,
@@ -17,6 +18,7 @@ import {
 const ResultSearch = () => {
     const { title } = useParams();
     const { token } = JSON.parse(localStorage.getItem('userData'));
+    const[loadingPages, setLoadingPages] = useState(true);
     const [documents, setDocuments] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     
@@ -26,6 +28,7 @@ const ResultSearch = () => {
         requisicaoGet.then(response => {
            const {data} = response;
            setDocuments(data);
+           setLoadingPages(false);
         });
         requisicaoGet.catch(error => { 
             console.log(error);
@@ -41,42 +44,44 @@ const ResultSearch = () => {
     return (
         <Container>
             <Header></Header>
-            <Section>
-                <Title>
-                    <div>
-                        <h1><ion-icon name="search"></ion-icon> Resultado da busca</h1>
-                    </div>
-                    <span><hr /></span>
-                </Title>
-                {
-                    documents.length === 0 ? 
-                    <Aviso>
-                        <h2>Não encontramos nenhum certificado com o nome "{title}"</h2>
-                        <h3>Clique <a href="/insert">aqui</a> e realize um cadastro</h3>
-                    </Aviso>
-                    :
-                    <table>
-                        <tbody>
-                            <Columns></Columns>               
-                            {
-                                currentItens.map((item, key) =>
-                                    <Document
-                                        key={key}
-                                        id={item.id}
-                                        title={item.title}
-                                        type={item.type}
-                                        issueDate={item.issueDate}
-                                        hours={item.hours}
-                                        documentUrl={item.documentUrl}
-                                        awsFileKey={item.awsFileKey}
-                                    />
-                                )
-                            }
-                        </tbody>
-                    </table>
-                }
-                <Pagination pages={pages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
-            </Section>
+            {loadingPages ? <Loading></Loading> :
+                <Section>
+                    <Title>
+                        <div>
+                            <h1><ion-icon name="search"></ion-icon> Resultado da busca</h1>
+                        </div>
+                        <span><hr /></span>
+                    </Title>
+                    {
+                        documents.length === 0 ? 
+                        <Aviso>
+                            <h2>Não encontramos nenhum certificado com o nome "{title}"</h2>
+                            <h3>Clique <a href="/insert">aqui</a> e realize um cadastro</h3>
+                        </Aviso>
+                        :
+                        <table>
+                            <tbody>
+                                <Columns></Columns>               
+                                {
+                                    currentItens.map((item, key) =>
+                                        <Document
+                                            key={key}
+                                            id={item.id}
+                                            title={item.title}
+                                            type={item.type}
+                                            issueDate={item.issueDate}
+                                            hours={item.hours}
+                                            documentUrl={item.documentUrl}
+                                            awsFileKey={item.awsFileKey}
+                                        />
+                                    )
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    <Pagination pages={pages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+                </Section>
+            }
         </Container>
     );
 }

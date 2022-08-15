@@ -23,7 +23,7 @@ const Documents = () => {
     const [render, setRender] = useState(false);
     const[loadingPages, setLoadingPages] = useState(true);
 
-    const itensPerPage = 10;
+    const itensPerPage = 8;
     const pages = Math.ceil(documents.length / itensPerPage);
     const startIndex = currentPage * itensPerPage;
     const endIndex = startIndex + itensPerPage;

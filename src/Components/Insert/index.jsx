@@ -80,7 +80,7 @@ const Insert = () => {
                         onChange={e => setDocumentData({ ...documentData, issueDate: e.target.value })} 
                         disabled={load ? true : false} required />
                     <Label>Carga horária</Label>
-                    <input type="number" min="0" step="1"
+                    <input type="number" min={0} step="1" max={50}
                         onChange={e => setDocumentData({ ...documentData, hours: e.target.value })} 
                         disabled={load ? true : false} required />
                     <Label>Anexar certificado</Label>

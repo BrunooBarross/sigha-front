@@ -54,26 +54,26 @@ const Documents = () => {
                     </Aviso>
                     :
                     <table>
-                    <tbody>
-                        <Columns></Columns>               
-                        {
-                            currentItens.map((item, key) =>
-                                <Document
-                                    key={key}
-                                    id={item.id}
-                                    title={item.title}
-                                    type={item.type}
-                                    issueDate={item.issueDate}
-                                    hours={item.hours}
-                                    documentUrl={item.documentUrl}
-                                    token={token}
-                                    render={render}
-                                    setRender={setRender}
-                                />
-                            )
-                        }
-                    </tbody>
-                </table>
+                        <tbody>
+                            <Columns></Columns>               
+                            {
+                                currentItens.map((item, key) =>
+                                    <Document
+                                        key={key}
+                                        id={item.id}
+                                        title={item.title}
+                                        type={item.type}
+                                        issueDate={item.issueDate}
+                                        hours={item.hours}
+                                        documentUrl={item.documentUrl}
+                                        token={token}
+                                        render={render}
+                                        setRender={setRender}
+                                    />
+                                )
+                            }
+                        </tbody>
+                    </table>
                 }
                 <Pagination pages={pages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
             </Section>

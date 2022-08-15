@@ -14,7 +14,7 @@ const Home = () => {
                 </div>
                 <DivButton>
                     <Bnt onClick={() => {navigate('/insert')}}>CADASTRAR CERTIFICADO</Bnt>
-                    <Bnt>FILTRAR EDITAR EXCLUIR</Bnt>
+                    <Bnt onClick={() => {navigate('/report')}}>RELATÓRIOS</Bnt>
                 </DivButton>
             </Section>
         </Container>

@@ -10,6 +10,7 @@ const Container = styled.div`
     background-color: #1a1919;
     position: sticky;
     top: 0;
+    z-index: 10;
     
     .div-logo{
         display: flex;

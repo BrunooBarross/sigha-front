@@ -7,7 +7,7 @@ const Container = styled.div`
     align-items: center;
     width: 100%;
     height: 100vh;
-    background-image: url("../../Assets/images/bg-main.jpg");
+    background-image: url("../Assets/images/bg-main.jpg");
     filter: brightness(95%);
 `
 

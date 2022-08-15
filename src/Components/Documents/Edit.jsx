@@ -9,7 +9,7 @@ const ModalEdit = ({ modalEditOpen, setModalEditOpen, id, title, type, issueDate
     const [documentData, setDocumentData] = useState({ title: title, type: type, issueDate: issueDate, hours: hours});
     const [certificate, setCertificate] = useState(undefined);
     const datePicker = new Date().toISOString().split("T")[0];
-   
+  
     const customStyles = {
         content: {
             height: '82%',
@@ -32,17 +32,17 @@ const ModalEdit = ({ modalEditOpen, setModalEditOpen, id, title, type, issueDate
             return "";
         }; 
 
-        const formData = new FormData();
-
         if( certificate === undefined && 
             documentData.title === title &&
             documentData.type === type &&
             documentData.issueDate === issueDate &&
             documentData.hours === hours
         ){
+            setLoad(false);
             return setModalEditOpen(false);
         }
 
+        const formData = new FormData();
         if(certificate !== undefined){
             formData.append('file', certificate);
         }

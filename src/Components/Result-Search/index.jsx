@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import Header from "../Header";
 import Columns from "../Documents/Columns"
-import Document from '../Documents/Document.js';
+import Document from '../Documents/Document';
 import Pagination from "../Documents/Pagination";
 
 const ResultSearch = () => {

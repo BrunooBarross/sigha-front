@@ -6,7 +6,7 @@ import SignUp from "../SignUp";
 import SignIn from "../SignIn";
 import Home from "../Home";
 import Insert from "../Insert";
-import Documents from "../Documents";
+import Documents from "../Documents/index";
 import ResultSearch from "../Result-Search";
 import Report from "../Report";
 

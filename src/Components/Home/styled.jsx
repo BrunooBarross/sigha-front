@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import background from "../../Assets2/img/bg-main.jpg"
 const Container = styled.div`
     @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');    
     display: flex;
@@ -7,7 +7,7 @@ const Container = styled.div`
     align-items: center;
     width: 100%;
     height: 100vh;
-    background-image: url("../Assets/images/bg-main.jpg");
+    background-image: url(${background});
     filter: brightness(95%);
 `
 

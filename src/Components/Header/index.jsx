@@ -18,12 +18,15 @@ const Header = () => {
                 <span className='logo'>SIGHA</span>
             </div>
             <Ul>
+                <li onClick={() => {navigate('/home')}}><ion-icon name="home-outline"></ion-icon>
+                    HOME
+                </li>
                 <li onClick={() => {navigate('/documents')}}><ion-icon name="document-outline"></ion-icon>
-                    LISTAR CERTIFICADOS
+                    LISTAR
                 </li>
                 <li  onClick={() => setModalIsOpen(true)}>
                     <ion-icon name="search-outline"></ion-icon>
-                    BUSCAR CERTIFICADOS
+                    BUSCAR
                 </li> 
             </Ul>
             <ImageUser 

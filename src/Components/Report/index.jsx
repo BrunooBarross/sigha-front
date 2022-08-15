@@ -86,7 +86,11 @@ const Report = () => {
                     <h1><ion-icon name="bar-chart-outline"></ion-icon>Relatório</h1>
                     <span><hr /></span>
                 </Title>
-                {documents.length === 0 ? <div>É 0</div> :
+                {documents.length === 0 ? 
+                    <Aviso>
+                        <h2>Você não possui nenhum documento</h2>
+                        <h3>Clique <a href="/insert">aqui</a> e realize um cadastro</h3>
+                    </Aviso> :
                     <>
                         <table>
                             <tbody>
@@ -175,6 +179,25 @@ const Title = styled.div`
 
     ion-icon{
         margin-right: 5px;
+    }
+`
+
+const Aviso = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    margin-top: 50px;
+    text-align: center;
+
+    h2{
+        font-size: 20px;
+    }
+
+    h3{
+        font-size: 16px;
+        margin-top: 10px;
     }
 `
 

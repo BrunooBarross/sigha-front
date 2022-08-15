@@ -81,7 +81,7 @@ const Container = styled.div`
             display: none;
         }  
         img{
-        width: 45px;
+        width: 40px;
         margin-left: 20px;
         }
     }

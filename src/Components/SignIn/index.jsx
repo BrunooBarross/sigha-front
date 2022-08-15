@@ -24,7 +24,7 @@ const SignIn = () => {
         setAlert(null);
         event.preventDefault();
         setLoad(true);
-        const requisicaoPost = axios.post("http://127.0.0.1:5000/signin", loginData);
+        const requisicaoPost = axios.post("https://sigha-api.herokuapp.com/signin", loginData);
         requisicaoPost.then(response => {
             const { data } = response;
             localStorage.setItem("userData", JSON.stringify({ token: data.token, userName: data.userName, picture: data.imageUrl }))

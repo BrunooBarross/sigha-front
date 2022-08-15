@@ -31,7 +31,7 @@ const Report = () => {
 
     useEffect(() => {
         const config = { headers: { Authorization: `Bearer ${token}` } }
-        const requisicaoGet = axios.get(`http://127.0.0.1:5000/documents`, config);
+        const requisicaoGet = axios.get(`https://sigha-api.herokuapp.com/documents`, config);
         requisicaoGet.then(response => {
             const { data } = response;
             setDocuments(data);

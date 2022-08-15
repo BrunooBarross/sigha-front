@@ -33,7 +33,7 @@ const SignUp = () => {
         formData.append('userName', register.userName);
         formData.append('email', register.email);
         formData.append('password', register.password);
-        const requisicaoPost = axios.post("http://127.0.0.1:5000/signup",
+        const requisicaoPost = axios.post("https://sigha-api.herokuapp.com/signup",
             formData,
             {
                 headers: {

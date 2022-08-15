@@ -33,7 +33,7 @@ const Insert = () => {
         formData.append('issueDate', dayjs(documentData.issueDate).locale('pt-BR').format('YYYY-MM-DD'));
         formData.append('hours', documentData.hours);
 
-        const requisicaoPost = axios.post("http://127.0.0.1:5000/documents",
+        const requisicaoPost = axios.post("https://sigha-api.herokuapp.com/documents",
             formData,
             {
                 headers: {

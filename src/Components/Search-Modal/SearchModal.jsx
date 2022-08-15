@@ -7,7 +7,7 @@ const SearchModal = ({ modalIsOpen, setModalIsOpen }) => {
     const [title, setTitle] = useState("");
     const customStyles = {
         content: {
-            width: '60%',
+            width: '80%',
             height: '250px',
             top: '23%',
             left: '50%',

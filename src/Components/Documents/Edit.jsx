@@ -51,7 +51,7 @@ const ModalEdit = ({ modalEditOpen, setModalEditOpen, id, title, type, issueDate
         formData.append('issueDate', dayjs(documentData.issueDate).locale('pt-BR').format('YYYY-MM-DD'));
         formData.append('hours', documentData.hours);
 
-        const requisicaoPost = axios.put("http://127.0.0.1:5000/documents",
+        const requisicaoPost = axios.put("https://sigha-api.herokuapp.com/documents",
             formData,
             {
                 headers: {

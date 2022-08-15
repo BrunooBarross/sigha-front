@@ -49,11 +49,14 @@ const Section = styled.div`
 
     @media (max-width: 900px) {	  
         width: 100%;
+        h1{
+            font-size: 32px;
+        }
     }
 
     @media (max-width: 390px) {	  
         h1{
-            font-size: 32px;
+            font-size: 28px;
         }
     }
 `

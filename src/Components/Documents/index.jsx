@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import Header from "../Header";
 import Columns from "./Columns";
-import Document from "../Documents/Document";
+import Document from "../Documents/Document.js";
 import Pagination from "./Pagination";
 
 const Documents = () => {

@@ -33,6 +33,7 @@ const Insert = () => {
         if(certificate.size > 2097152){
             setLoad(false);
             window.alert("Olha o tamanho dessse arquivo ai fera! quer me falir? Mais de 2mb... Dá não");
+            setLoad(false);
             return "";
         };   
         const formData = new FormData();

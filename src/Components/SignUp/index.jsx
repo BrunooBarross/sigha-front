@@ -31,6 +31,7 @@ const SignUp = () => {
 
         if(image.size > 2097152){
             window.alert("Olha o tamanho dessse arquivo ai fera! quer me falir? Mais de 2mb... Dá não");
+            setLoad(false);
             return "";
         }; 
 

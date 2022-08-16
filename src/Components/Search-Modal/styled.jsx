@@ -3,8 +3,7 @@ import styled from 'styled-components';
 const DivModal = styled.div`
     width: 100%;
     height: 100%;
-    z-index: 11;
-    
+
     .modal-header{
         width: 100%;
         display: flex;

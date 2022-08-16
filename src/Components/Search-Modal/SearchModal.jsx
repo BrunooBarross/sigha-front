@@ -13,7 +13,7 @@ const SearchModal = ({ modalIsOpen, setModalIsOpen }) => {
         content: {
             width: '80%',
             height: '250px',
-            top: '23%',
+            top: '25%',
             left: '50%',
             right: 'auto',
             bottom: 'auto',

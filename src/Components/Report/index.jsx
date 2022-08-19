@@ -144,7 +144,8 @@ const Report = () => {
                                 <div><span>Gráfico meta de horas</span></div>
                                 <input type="number" title='Digita sua meta de horas' min={1} maxLength={400}
                                     placeholder="Sua meta de horas" onChange={e => setReportData({ ...reportData, hours: e.target.value })} required />
-                                <input type="date" title='O cálculo será realizado a partir da data selacionada' max={datePicker} required />
+                                <input type="date" title='O cálculo será realizado a partir da data selacionada' max={datePicker} 
+                                    onChange={e => setReportData({ ...reportData, date: e.target.value })} required />
                                 <button type='submit'>Gerar</button>
                             </DivInput>
                             <Modal

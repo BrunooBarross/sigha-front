@@ -76,15 +76,16 @@ const Report = () => {
         event.preventDefault();
         let totalHoursChart = 0;
         documents.forEach((document) => {
-            if (dayjs(reportData.date).locale('pt-BR').format('YYYY-MM-DD') > document.issueDate) {
+            if (dayjs(reportData.date).locale('pt-BR').format('YYYY-MM-DD') < document.issueDate) {
+                console.log('estrei aqui')
                 totalHoursChart = totalHoursChart + parseInt(document.hours);
             }
         })
         const result = reportData.hours - totalHoursChart;
         setgoalData([
             ["Resultado", "Horas"],
-            ["Faltam", result < 0 ? 0 : result],
-            ["Possui", totalHoursChart]
+            ["Possui", totalHoursChart],
+            ["Faltam", result < 0 ? 0 : result]
         ])
         setModalIsOpen(true);
     }

@@ -43,7 +43,7 @@ const Insert = () => {
         formData.append('issueDate', dayjs(documentData.issueDate).locale('pt-BR').format('YYYY-MM-DD'));
         formData.append('hours', documentData.hours);
 
-        const requisicaoPost = axios.post("https://sigha-api.herokuapp.com/documents",
+        const requisicaoPost = axios.post(`${process.env.REACT_APP_API_BASE_URL}/documents`,
             formData,
             {
                 headers: {

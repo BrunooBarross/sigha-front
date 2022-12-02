@@ -21,7 +21,7 @@ const Document = ({ id, title, type, issueDate, hours, documentUrl, token, rende
         let dialog = window.confirm("Deletar o arquivo: " + title+ "?");
         if(dialog){
             const config = {headers: { Authorization: `Bearer ${token}`, id}}
-            const requestDelete = axios.delete(`https://sigha-api.herokuapp.com/documents`,config);
+            const requestDelete = axios.delete(`${process.env.REACT_APP_API_BASE_URL}/documents`,config);
             requestDelete.then(response => {
                 setImageSrc("../assets/images/joinha.png");
                 setAlertColor(true)

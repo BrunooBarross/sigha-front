@@ -40,7 +40,7 @@ const SignUp = () => {
         formData.append('userName', register.userName);
         formData.append('email', register.email);
         formData.append('password', register.password);
-        const requisicaoPost = axios.post("https://sigha-api.herokuapp.com/signup",
+        const requisicaoPost = axios.post(`${process.env.REACT_APP_API_BASE_URL}/signup`,
             formData,
             {
                 headers: {

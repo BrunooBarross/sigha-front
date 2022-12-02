@@ -30,7 +30,7 @@ const SignIn = () => {
         setAlert(null);
         event.preventDefault();
         setLoad(true);
-        const requisicaoPost = axios.post("https://sigha-api.herokuapp.com/signin", loginData);
+        const requisicaoPost = axios.post(`${process.env.REACT_APP_API_BASE_URL}/signin`, loginData);
         requisicaoPost.then(response => {
             const { data } = response;
             localStorage.setItem("userData", JSON.stringify({ token: data.token, userName: data.userName, picture: data.imageUrl }))

@@ -31,7 +31,7 @@ const Documents = () => {
 
     useEffect(() => {
         const config = { headers: { Authorization: `Bearer ${token}`}}
-        const requisicaoGet = axios.get(`https://sigha-api.herokuapp.com/documents`,config);
+        const requisicaoGet = axios.get(`${process.env.REACT_APP_API_BASE_URL}/documents`,config);
         requisicaoGet.then(response => {
            const {data} = response;
            setDocuments(data);

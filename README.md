@@ -1,8 +1,13 @@
 <p align="center">
   <h1 align="center">
-    NG.CASH Challenge Bruno Barros
+    SIGHA -  Bruno Barros
   </h1>
 </p>
+
+ - SIGHA - Sistema Gerenciador de Horas Acadêmicas
+ - É um sistema autoral que busca resolver os problemas de estudantes que buscam o armazenamento e gestão de horas acadêmicas
+ sendo possível cadastrar suas horas e certificados e realizar consultas de metas de horas conforme necessitade do seu curso.
+
 
 ## 💻 Tecnologias Utilizadas
 
@@ -10,14 +15,14 @@
 - ReactJS
 
 ---
-
-Deploy: https://sigha-front.vercel.app/
+- Atualização: Devido a nova política do heroku o deploy não esta mais em funcionamento.
+Deploy: https://sigha-front.vercel.app/   
 
 ## 👨🏻‍💻 Instalação
 
-```bash
+- IMPORTANTE:  É necessário clonar e rodar o back-end através de https://github.com/BrunooBarross/sigha-api
 
-$ IMPORTANTE - É necessário clonar e rodar o back-end através de https://github.com/BrunooBarross/sigha-api
+```bash
 
 $ git clone https://github.com/BrunooBarross/sigha-front
 

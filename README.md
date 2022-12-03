@@ -5,8 +5,8 @@
 </p>
 
  - SIGHA - Sistema Gerenciador de Horas Acadêmicas
- - É um sistema autoral que busca resolver os problemas de estudantes que buscam o armazenamento e gestão de horas acadêmicas,
- na aplicação é possível cadastrar suas horas e certificados e ainda realizar consultas de metas conforme necessitade de cada curso.
+ - É um sistema autoral que tem como objetivo resolver os problemas de estudantes em relação ao armazenamento e gestão de horas acadêmicas.
+ - Na aplicação é possível cadastrar suas horas e certificados e ainda realizar consultas de metas conforme necessitade de cada curso.
 
 
 ## 💻 Tecnologias Utilizadas
